@@ -1,42 +1,76 @@
 package pl.edu.wszib.lab1.builder;
 
 public class Person {
+    private final String firstName;
+    private final String lastName;
+    private final Integer age;
+    private final Gender gender;
+    private final Address address;
 
-    String  firstname;
-
-    String lastname;
-
-    String sex;
-
-    String city;
-
-    String address;
-
-    String houseNumber;
-
-    String postalCode;
-
-    int age;
-    private Person(String firstname, String lastname, String sex, int age){
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.sex = sex;
+    private Person(final String firstName,
+                   final String lastName,
+                   final Integer age,
+                   final Gender gender,
+                   final Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
-
+        this.gender = gender;
+        this.address = address;
     }
 
-    public address(String city, String address, String houseNumber, string postalCode){
-            this.city  = city;
-            this.address = address;
-            this.houseNumber = houseNumber;
-            this.postalCode = postalCode;
-
-
+    public static Person.Builder builder() {
+        return new Person.Builder();
     }
+
     public static class Builder {
-        public Person build(){
-            return new Person();
+        private String firstName;
+        private String lastName;
+        private Integer age;
+        private Gender gender;
+        private Address address;
+
+        private Male male;
+
+        private Female female;
+
+        public Person build() {
+            return new Person(
+                    firstName,
+                    lastName,
+                    age,
+                    gender,
+                    address
+            );
         }
 
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder age(Integer age) {
+            this.age = age;
+            return this;
+        }
+        public Builder gender(Gender gender) {
+            this.gender = gender;
+            return this;
+        }
+        public Builder address(Address address) {
+            this.address = address;
+            return this;
+        }
+
+        public Address.Builder addressBuilder() {
+            return Address.builder();
+        }
     }
+
+
 }
